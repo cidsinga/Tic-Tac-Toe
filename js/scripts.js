@@ -23,7 +23,7 @@ function Board() {
   this.spaces = new Spaces();
   this.spacesKeys = ["spA","spB","spC","spD","spE","spF","spG","spH","spI"];
   this.winner = false;
-  this.currentPlayer = false;
+  this.currentPlayer = "X";
 }
 
 Board.prototype.selectSpace = function (spaceId, playerLetter) {
@@ -32,7 +32,9 @@ Board.prototype.selectSpace = function (spaceId, playerLetter) {
   spaceMap.forEach(function(xAndY) {
     thisBoard.threeInRows[xAndY[0]][xAndY[1]] = playerLetter;
   });
-  return true;
+  var isWin = board.checkForWin();
+  if (!isWin) this.changePlayer();
+  return isWin;
 };
 
 Board.prototype.checkForWin = function () {
@@ -85,5 +87,27 @@ var board = new Board();
 
 $(document).ready(function() {
 
+  function placeToken(divToMark, playerToMark){
+    var random = Math.floor(Math.random() * 4) +1
+    $(divToMark).text('');
+    var newImg = `<img src="img/${playerToMark}${random}.png" alt="Empty Space">`
+    $(divToMark).append(newImg);
+    $(divToMark).removeClass("playable");
+  }
+
+  $(".board").on("click", ".playable", function() {
+    placeToken(this, board.currentPlayer);
+    var isWin = board.selectSpace(this.id, board.currentPlayer);
+    $(".currentPlayer").text(board.currentPlayer);
+    if (isWin) {
+      $(".winner-modal").modal("show");
+      $("#restart").show();
+      $("#turn").hide();
+    };
+  })
+
+  $("#startOver").click(function() {
+    location.reload();
+  })
 
 });

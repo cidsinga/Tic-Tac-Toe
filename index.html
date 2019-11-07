@@ -4,15 +4,62 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
     <script src="js/scripts.js" type="text/javascript"></script>
-    <title>TITLE</title>
+    <title>Tic Tac Toe</title>
   </head>
   <body>
     <div class="container main">
       <div class="jumbotron header">
-        <h1>HEADING</h1>
-        <h3>SUBHEADING</h3>
+        <h1>TIC TAC TOE</h1>
+        <h3>A game of wits</h3>
+      </div>
+      <div id="turn" class="card">
+        <h2>Current Player: <span class="currentPlayer">X</span></h2>
+      </div>
+      <div id="restart" class="card">
+        <button id="startOver" type="button" class="btn btn-light btn-lg btn-block">Start Over</button>
+      </div>
+      <div class="board">
+        <div id="spA" class="space playable">
+          <img src="img/e1.png" alt="Empty Space">
+        </div>
+        <div id="spB" class="space playable">
+          <img src="img/e2.png" alt="Empty Space">
+        </div>
+        <div id="spC" class="space playable">
+          <img src="img/e3.png" alt="Empty Space">
+        </div>
+        <div id="spD" class="space playable">
+          <img src="img/e4.png" alt="Empty Space">
+        </div>
+        <div id="spE" class="space playable">
+          <img src="img/e5.png" alt="Empty Space">
+        </div>
+        <div id="spF" class="space playable">
+          <img src="img/e2.png" alt="Empty Space">
+        </div>
+        <div id="spG" class="space playable">
+          <img src="img/e4.png" alt="Empty Space">
+        </div>
+        <div id="spH" class="space playable">
+          <img src="img/e3.png" alt="Empty Space">
+        </div>
+        <div id="spI" class="space playable">
+          <img src="img/e5.png" alt="Empty Space">
+        </div>
       </div>
     </div>
+    <div class="winner-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="winnerAlertModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h1><span class="currentPlayer"></span> WON!!!<br> IN YO FACE. </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="winner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  </div>
   </body>
 </html>

@@ -1,0 +1,39 @@
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 30px;
+}
+
+.space {
+  border: 2px solid #0F414F;
+  background-color: #022A35;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+img {
+  width: 100%
+}
+body {
+  text-align: center;
+  background-color: #265B6A;
+}
+.jumbotron {
+  background-color: #023759;
+  color: #CDCDCD
+}
+.card {
+  background-color: #CDCDCD;
+  color: #023759;
+  padding: 20px;
+}
+
+#restart {
+  display: none;
+
+}
+
+h1 {
+  font-size: 70px;
+  font-family: sans-serif;
+}
