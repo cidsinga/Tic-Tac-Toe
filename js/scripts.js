@@ -24,16 +24,25 @@ function Board() {
   this.spacesKeys = ["spA","spB","spC","spD","spE","spF","spG","spH","spI"];
   this.winner = false;
   this.currentPlayer = "X";
+  this.turnCount = 0;
+  this.isTie = false;
 }
 
 Board.prototype.selectSpace = function (spaceId, playerLetter) {
   var spaceMap = this.spaces[spaceId];
+  this.turnCount += 1;
   var thisBoard = this;
   spaceMap.forEach(function(xAndY) {
     thisBoard.threeInRows[xAndY[0]][xAndY[1]] = playerLetter;
   });
   var isWin = board.checkForWin();
-  if (!isWin) this.changePlayer();
+  if (!isWin) {
+    if (this.turnCount === 9) {
+      this.isTie = true;
+    } else {
+      this.changePlayer();
+    }
+  }
   return isWin;
 };
 
@@ -61,28 +70,7 @@ Board.prototype.changePlayer = function () {
   return this.currentPlayer;
 };
 
-
-
-
 var board = new Board();
-// board.currentPlayer = "X"
-// board.selectSpace("spE", board.currentPlayer);
-// console.log(board.checkForWin());
-// board.changePlayer();
-// board.selectSpace("spA", board.currentPlayer);
-// console.log(board.checkForWin());
-// board.changePlayer();
-// board.selectSpace("spD", board.currentPlayer);
-// console.log(board.checkForWin());
-// board.changePlayer();
-// board.selectSpace("spB", board.currentPlayer);
-// console.log(board.checkForWin());
-// board.changePlayer();
-// board.selectSpace("spF", board.currentPlayer);
-// console.log(board.checkForWin());
-//
-//
-// console.log(board);
 
 
 $(document).ready(function() {
@@ -104,6 +92,11 @@ $(document).ready(function() {
       $("#restart").show();
       $("#turn").hide();
     };
+    if (board.isTie) {
+      $(".tie-modal").modal("show");
+      $("#restart").show();
+      $("#turn").hide();
+    }
   })
 
   $("#startOver").click(function() {
